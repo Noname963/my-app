@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="공장 설비 고장진단·예지보전 전문가를 목표로 하는 지원자 포트폴리오" />
+  <title>공장 고장진단 포트폴리오</title>
+  <style>
+    :root{
+      --bg:#071019;
+      --panel:#0d1a26;
+      --panel-2:#102232;
+      --line:#21384a;
+      --text:#edf6fb;
+      --muted:#9eb2bf;
+      --accent:#45d0b2;
+      --accent-2:#6fb8ff;
+      --warn:#ffbd66;
+      --max:1120px;
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 85% 12%, rgba(69,208,178,.11), transparent 30%),
+        radial-gradient(circle at 10% 30%, rgba(111,184,255,.08), transparent 24%),
+        var(--bg);
+      font-family:Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      line-height:1.75;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max), calc(100% - 36px)); margin:0 auto}
+    .nav{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter:blur(14px);
+      background:rgba(7,16,25,.82);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .nav-inner{
+      min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px;
+    }
+    .brand{font-weight:900; letter-spacing:-.03em}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex; gap:18px; color:var(--muted); font-size:.93rem}
+    .nav-links a:hover{color:var(--text)}
+    .hero{
+      min-height:78vh; display:grid; align-items:center; padding:92px 0 70px;
+    }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:9px;
+      padding:7px 12px; border:1px solid rgba(69,208,178,.35);
+      color:#bdf5e8; border-radius:999px; background:rgba(69,208,178,.07);
+      font-size:.88rem; font-weight:800;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent)}
+    h1{
+      margin:22px 0 18px; max-width:900px;
+      font-size:clamp(2.5rem, 7vw, 5.8rem); line-height:1.04; letter-spacing:-.055em;
+    }
+    .hero p{
+      max-width:790px; margin:0; color:#c5d4dd;
+      font-size:clamp(1.05rem,2vw,1.3rem);
+    }
+    .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      min-height:48px; padding:0 18px; border-radius:13px; font-weight:900;
+      border:1px solid var(--line); transition:.2s ease;
+    }
+    .btn.primary{background:var(--accent); color:#06241d; border-color:transparent}
+    .btn.secondary{background:rgba(255,255,255,.035)}
+    .btn:hover{transform:translateY(-2px)}
+    .hero-meta{
+      margin-top:55px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+    }
+    .meta-card{
+      padding:18px; border:1px solid var(--line); background:rgba(13,26,38,.73); border-radius:17px;
+    }
+    .meta-card b{display:block; color:var(--accent); margin-bottom:3px}
+    .meta-card span{color:var(--muted);font-size:.92rem}
+    section{padding:82px 0}
+    .section-label{
+      margin:0 0 10px; color:var(--accent); font-weight:900; letter-spacing:.02em; font-size:.92rem;
+    }
+    h2{
+      margin:0 0 17px; font-size:clamp(2rem,4vw,3.15rem); line-height:1.12; letter-spacing:-.04em;
+    }
+    .lead{margin:0; max-width:790px; color:var(--muted); font-size:1.06rem}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:35px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px}
+    .card{
+      padding:26px; border:1px solid var(--line); border-radius:var(--radius);
+      background:linear-gradient(145deg,rgba(16,34,50,.88),rgba(10,24,35,.86));
+    }
+    .card h3{margin:0 0 12px;font-size:1.28rem;letter-spacing:-.025em}
+    .card p{margin:0;color:var(--muted)}
+    .icon{
+      width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+      margin-bottom:18px;background:rgba(69,208,178,.09);border:1px solid rgba(69,208,178,.22);
+      font-weight:900;color:var(--accent);
+    }
+    .skill-list{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+    .chip{
+      padding:7px 10px;border-radius:999px;background:rgba(111,184,255,.08);
+      border:1px solid rgba(111,184,255,.18);color:#cce6ff;font-size:.85rem;font-weight:750;
+    }
+    .process{
+      display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:34px;counter-reset:step;
+    }
+    .step{
+      min-height:155px;padding:20px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025);
+      position:relative;
+    }
+    .step:before{
+      counter-increment:step;content:"0" counter(step);display:block;color:var(--accent);
+      font-size:.82rem;font-weight:900;margin-bottom:24px;
+    }
+    .step b{display:block;margin-bottom:5px}.step span{color:var(--muted);font-size:.9rem}
+    .project{
+      margin-top:24px; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+      background:rgba(13,26,38,.72);
+    }
+    .project-head{
+      padding:26px; display:flex; justify-content:space-between; gap:20px; align-items:flex-start;
+      border-bottom:1px solid var(--line);
+    }
+    .project-head h3{margin:0 0 8px;font-size:1.45rem}
+    .project-head p{margin:0;color:var(--muted)}
+    .status{
+      white-space:nowrap;padding:6px 10px;border-radius:999px;font-weight:900;font-size:.82rem;
+      color:#3d2a08;background:#ffd98b;
+    }
+    .four{
+      display:grid;grid-template-columns:repeat(4,1fr);
+    }
+    .four article{padding:24px;min-height:230px}
+    .four article+article{border-left:1px solid var(--line)}
+    .four small{color:var(--accent);font-weight:900}
+    .four h4{margin:5px 0 10px;font-size:1.05rem}
+    .four p{margin:0;color:var(--muted);font-size:.93rem}
+    .evidence{
+      margin-top:34px;padding:28px;border:1px solid rgba(69,208,178,.25);
+      background:linear-gradient(100deg,rgba(69,208,178,.08),rgba(111,184,255,.05));
+      border-radius:var(--radius);
+    }
+    .evidence strong{color:var(--accent)}
+    .timeline{margin-top:32px;position:relative}
+    .timeline:before{content:"";position:absolute;left:8px;top:5px;bottom:8px;width:1px;background:var(--line)}
+    .t-item{position:relative;padding:0 0 30px 34px}
+    .t-item:before{content:"";position:absolute;left:2px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(69,208,178,.09)}
+    .t-item h3{margin:0 0 4px;font-size:1.05rem}
+    .t-item p{margin:0;color:var(--muted)}
+    .contact{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch;
+    }
+    .contact .card{min-height:100%}
+    .contact-list{list-style:none;padding:0;margin:20px 0 0}
+    .contact-list li{padding:8px 0;color:#c8d7df}
+    .muted-box{
+      border:1px dashed #395063;border-radius:14px;padding:16px;color:var(--muted);font-size:.92rem;margin-top:18px;
+    }
+    footer{padding:38px 0 48px;color:#6f8796;font-size:.88rem}
+    .warning{color:var(--warn)}
+    @media (max-width:900px){
+      .nav-links{display:none}
+      .hero-meta,.grid-3,.process{grid-template-columns:1fr 1fr}
+      .four{grid-template-columns:1fr 1fr}
+      .four article+article{border-left:none}
+      .four article:nth-child(even){border-left:1px solid var(--line)}
+      .four article:nth-child(n+3){border-top:1px solid var(--line)}
+      .contact,.grid-2{grid-template-columns:1fr}
+    }
+    @media (max-width:600px){
+      .hero{min-height:auto;padding-top:68px}
+      .hero-meta,.grid-3,.process,.four{grid-template-columns:1fr}
+      .four article:nth-child(even){border-left:none}
+      .four article+article{border-top:1px solid var(--line)}
+      .project-head{flex-direction:column}
+      h1{font-size:3rem}
+      section{padding:62px 0}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">FAULT<span>DIAG</span> PORTFOLIO</a>
+      <div class="nav-links">
+        <a href="#about">소개</a>
+        <a href="#workflow">진단 관점</a>
+        <a href="#projects">프로젝트</a>
+        <a href="#growth">성장 기록</a>
+        <a href="#contact">연락처</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="wrap">
+        <span class="eyebrow"><span class="dot"></span> 목표 직무 · 공장 설비 고장진단 / 예지보전</span>
+        <h1>고장을 고친 뒤가 아니라,<br>고장 전에 <span style="color:var(--accent)">징후를 찾는 사람</span>.</h1>
+        <p>
+          저는 공장 설비의 상태 데이터를 관찰하고, 이상 징후를 근거로 원인을 좁혀
+          정비 의사결정에 도움이 되는 <strong>고장진단 전문가</strong>를 목표로 하고 있습니다.
+          이 포트폴리오는 “전문가라고 주장하는 페이지”가 아니라,
+          진단 문제를 어떻게 정의하고 검증해 나갈지를 보여주는 증거 중심의 기록입니다.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">진단 프로젝트 보기</a>
+          <a class="btn secondary" href="#contact">연락처 / GitHub</a>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-card"><b>진단 관점</b><span>현상 → 데이터 → 원인 가설 → 검증</span></div>
+          <div class="meta-card"><b>관심 설비</b><span>회전체 · 펌프 · 모터 · 컨베이어</span></div>
+          <div class="meta-card"><b>증명 방식</b><span>프로젝트 결과 + 데이터 + Git 기록</span></div>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="wrap">
+        <p class="section-label">01 · POSITIONING</p>
+        <h2>제가 되고 싶은 사람</h2>
+        <p class="lead">
+          생산 현장의 고장은 단순히 “기계가 멈춘 사건”이 아니라 품질, 납기, 안전, 비용에 영향을 주는 문제입니다.
+          저는 센서와 운전 데이터를 통해 이상을 조기에 발견하고, 가능한 원인을 체계적으로 좁혀
+          현장이 더 빠르고 근거 있게 대응하도록 돕는 진단 전문가로 성장하고자 합니다.
+        </p>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>이상 징후를 읽는 눈</h3>
+            <p>진동·온도·전류·소음 등 상태 정보에서 정상과 다른 패턴을 찾고, “무엇이 달라졌는가”를 먼저 설명하는 역량을 기릅니다.</p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>원인을 좁히는 사고</h3>
+            <p>하나의 수치만 보고 결론 내리기보다 설비 구조, 운전 조건, 고장 모드를 함께 보고 여러 가설을 비교하는 습관을 만듭니다.</p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>현장이 쓰는 결과</h3>
+            <p>진단의 끝은 그래프가 아니라 정비 판단입니다. 결과를 “어디를, 왜, 언제 확인해야 하는가”까지 연결하는 것을 목표로 합니다.</p>
+          </article>
+        </div>
+
+        <div class="evidence">
+          <strong>현재 상태:</strong> 아직 실제 경력과 성과 수치는 입력되지 않았습니다.
+          아래 항목은 지원을 위해 만들 <b>진단 프로젝트 계획</b>이며,
+          실제 수행 후 데이터·수치·링크로 교체하는 것을 전제로 구성했습니다.
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <div class="wrap">
+        <p class="section-label">02 · DIAGNOSTIC WORKFLOW</p>
+        <h2>저의 고장진단 사고 순서</h2>
+        <p class="lead">설비를 보자마자 고장명을 맞히는 것보다, 재현 가능한 순서로 원인을 좁히는 능력을 증명하겠습니다.</p>
+
+        <div class="process">
+          <div class="step"><b>현상 정의</b><span>언제, 어떤 조건에서, 무엇이 평소와 달라졌는지 기록</span></div>
+          <div class="step"><b>데이터 수집</b><span>진동·온도·전류·RPM·부하 등 비교 가능한 정보 확보</span></div>
+          <div class="step"><b>특징 추출</b><span>추세, RMS, 피크, 주파수 성분 등 이상을 설명할 특징 확인</span></div>
+          <div class="step"><b>원인 가설</b><span>불평형·정렬 불량·베어링·캐비테이션 등 후보를 설비 구조와 연결</span></div>
+          <div class="step"><b>검증·제안</b><span>추가 점검으로 가설을 확인하고 정비 우선순위와 다음 행동 제안</span></div>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>학습 및 증명 예정 기술</h3>
+            <p>실제로 프로젝트에서 사용한 항목만 남기고, 사용하지 않은 기술은 삭제할 예정입니다.</p>
+            <div class="skill-list">
+              <span class="chip">진동 분석 기초</span>
+              <span class="chip">FFT / 주파수 분석</span>
+              <span class="chip">RMS / Peak / Kurtosis</span>
+              <span class="chip">트렌드 분석</span>
+              <span class="chip">온도 / 전류 상태감시</span>
+              <span class="chip">Python 데이터 분석</span>
+              <span class="chip">이상 탐지 기초</span>
+              <span class="chip">설비 FMEA 관점</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3>프로젝트에서 반드시 남길 증거</h3>
+            <p>“분석할 줄 압니다”라는 문장보다 직접 확인 가능한 자료를 남기는 것을 원칙으로 합니다.</p>
+            <div class="skill-list">
+              <span class="chip">원본/샘플 데이터</span>
+              <span class="chip">분석 노트북 또는 코드</span>
+              <span class="chip">그래프와 해석</span>
+              <span class="chip">문제·과정·해결·결과</span>
+              <span class="chip">README</span>
+              <span class="chip">커밋 이력</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <p class="section-label">03 · PROJECTS</p>
+        <h2>고장진단 포트폴리오 프로젝트</h2>
+        <p class="lead">아래는 지원 직무와 직접 연결되도록 설계한 프로젝트입니다. 아직 수행 전이므로 성과를 지어내지 않고 “보강 예정”으로 표시했습니다.</p>
+
+        <article class="project">
+          <div class="project-head">
+            <div>
+              <h3>Project 01 · 모터 베어링 이상 진단</h3>
+              <p>진동 데이터에서 정상/이상 차이를 찾고, 주파수 성분을 근거로 고장 후보를 설명하는 프로젝트</p>
+            </div>
+            <span class="status">설계 단계</span>
+          </div>
+          <div class="four">
+            <article>
+              <small>문제</small><h4>어떤 불편인가</h4>
+              <p>모터는 고장 전까지 겉으로 정상처럼 보일 수 있습니다. 베어링 상태 악화를 조기에 구분할 수 있는 데이터 기준이 필요합니다.</p>
+            </article>
+            <article>
+              <small>과정</small><h4>무엇을 결정하고 왜</h4>
+              <p>정상/이상 데이터의 시간 파형과 스펙트럼을 함께 비교하고, 운전 조건 차이가 결과에 미치는 영향을 분리해서 보겠습니다.</p>
+            </article>
+            <article>
+              <small>해결</small><h4>무엇을 만들 것인가</h4>
+              <p>Python 기반 분석 노트북, 특징값 비교표, 주파수 스펙트럼 시각화, 진단 근거 요약 문서를 만들 계획입니다.</p>
+            </article>
+            <article>
+              <small>결과</small><h4>무엇이 달라졌나</h4>
+              <p><span class="warning">(보강 예정)</span> 실제 데이터 분석 후 분류 정확도, 구분 가능한 특징, 한계와 오진 가능성을 수치로 기록합니다.</p>
+            </article>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <div>
+              <h3>Project 02 · 펌프 캐비테이션 징후 탐지</h3>
+              <p>운전 조건과 상태 신호 변화를 함께 보고 캐비테이션 가능성을 조기에 판단하는 프로젝트</p>
+            </div>
+            <span class="status">설계 단계</span>
+          </div>
+          <div class="four">
+            <article>
+              <small>문제</small><h4>어떤 불편인가</h4>
+              <p>펌프 이상 소음이나 진동이 커진 뒤 대응하면 성능 저하와 부품 손상으로 이어질 수 있습니다. 초기 징후를 객관적으로 설명할 기준이 필요합니다.</p>
+            </article>
+            <article>
+              <small>과정</small><h4>무엇을 결정하고 왜</h4>
+              <p>유량·압력·진동 등 운전 정보를 함께 보며 단순 진동 증가와 운전 조건 변화가 섞이지 않도록 비교 기준을 정의합니다.</p>
+            </article>
+            <article>
+              <small>해결</small><h4>무엇을 만들 것인가</h4>
+              <p>조건별 데이터 비교 대시보드 또는 분석 리포트와 “추가 확인이 필요한 조건”을 정리한 진단 체크리스트를 만들 계획입니다.</p>
+            </article>
+            <article>
+              <small>결과</small><h4>무엇이 달라졌나</h4>
+              <p><span class="warning">(보강 예정)</span> 실제 수행 후 탐지 기준, 오탐 사례, 현장 적용 시 필요한 추가 센서/점검 항목을 기록합니다.</p>
+            </article>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <div>
+              <h3>Project 03 · 컨베이어 구동부 상태 모니터링</h3>
+              <p>모터·감속기·베어링의 상태 변화를 추세로 관리해 점검 우선순위를 정하는 프로젝트</p>
+            </div>
+            <span class="status">설계 단계</span>
+          </div>
+          <div class="four">
+            <article>
+              <small>문제</small><h4>어떤 불편인가</h4>
+              <p>컨베이어는 생산 흐름과 직접 연결되므로 갑작스러운 정지는 라인 전체에 영향을 줄 수 있습니다. 정기점검만으로는 변화 시점을 놓칠 수 있습니다.</p>
+            </article>
+            <article>
+              <small>과정</small><h4>무엇을 결정하고 왜</h4>
+              <p>절대값 한 번보다 시간에 따른 변화율을 우선 보고, 부하·속도와 함께 비교해 “정상 변동”과 “이상 추세”를 구분합니다.</p>
+            </article>
+            <article>
+              <small>해결</small><h4>무엇을 만들 것인가</h4>
+              <p>설비별 상태지표 추세표, 경고 기준 초안, 이상 시 점검 순서를 연결한 간단한 상태 모니터링 프로토타입을 만들 계획입니다.</p>
+            </article>
+            <article>
+              <small>결과</small><h4>무엇이 달라졌나</h4>
+              <p><span class="warning">(보강 예정)</span> 수행 후 어떤 지표가 조기 경고에 유효했는지, 점검 우선순위 결정에 얼마나 도움이 되는지 정리합니다.</p>
+            </article>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="growth">
+      <div class="wrap">
+        <p class="section-label">04 · RECORD</p>
+        <h2>전문성은 결과와 기록으로 쌓겠습니다</h2>
+        <p class="lead">
+          진단 프로젝트 하나가 끝날 때마다 “프로젝트 카드 하나”만 늘리는 것이 아니라,
+          무엇을 시도했고 왜 바꿨는지 Git 커밋과 문서로 남기겠습니다.
+        </p>
+
+        <div class="timeline">
+          <div class="t-item">
+            <h3>1. 데이터와 문제 정의</h3>
+            <p>설비, 고장 모드, 데이터 출처, 분석 목표, 평가 기준을 README에 먼저 작성합니다.</p>
+          </div>
+          <div class="t-item">
+            <h3>2. 분석 과정 기록</h3>
+            <p>가설 변경, 실패한 접근, 특징 선택 이유를 작은 단위의 커밋 메시지와 노트로 남깁니다.</p>
+          </div>
+          <div class="t-item">
+            <h3>3. 결과를 숫자와 그림으로</h3>
+            <p>가능하면 정확도, 오탐/미탐, 시간 단축, 탐지 시점 등 실제 측정 가능한 수치로 정리합니다.</p>
+          </div>
+          <div class="t-item">
+            <h3>4. 현장 적용 한계까지 적기</h3>
+            <p>데이터 부족, 운전조건 변화, 센서 위치 등 진단을 어렵게 만든 조건과 다음 실험 계획을 함께 씁니다.</p>
+          </div>
+        </div>
+
+        <div class="evidence">
+          <strong>커밋 메시지 예시</strong><br>
+          “베어링 데이터 정상/이상 구간 분리” → “FFT 비교 추가” → “부하 조건별 오탐 원인 정리” → “진단 리포트 v1 작성”
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap contact">
+        <article class="card">
+          <p class="section-label">05 · CONTACT</p>
+          <h2>고장진단 전문가로 성장할 기회를 찾고 있습니다.</h2>
+          <p class="lead">설비의 이상을 데이터로 설명하고, 정비 판단까지 연결하는 엔지니어가 되겠습니다.</p>
+          <ul class="contact-list">
+            <li><b>이름</b> · [이름 입력]</li>
+            <li><b>Email</b> · [이메일 입력]</li>
+            <li><b>GitHub</b> · [https://github.com/아이디]</li>
+            <li><b>Portfolio</b> · [https://아이디.github.io]</li>
+          </ul>
+          <div class="muted-box">
+            ※ 대괄호 [ ] 안의 내용은 본인 정보로 교체하세요. 실제로 수행한 프로젝트가 생기면
+            “설계 단계”를 “완료”로 바꾸고 결과 수치와 GitHub 링크를 연결하세요.
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>지원 전 최종 점검</h3>
+          <p>이 페이지에서 아래 항목이 모두 실제 증거로 연결되는지 확인합니다.</p>
+          <div class="skill-list" style="margin-top:24px">
+            <span class="chip">직무 목표가 첫 화면에 보임</span>
+            <span class="chip">프로젝트가 문제-과정-해결-결과 구조</span>
+            <span class="chip">성과 수치를 지어내지 않음</span>
+            <span class="chip">GitHub 링크 연결</span>
+            <span class="chip">분석 코드/데이터 확인 가능</span>
+            <span class="chip">커밋 이력으로 과정 확인 가능</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      © <span id="year"></span> [이름 입력] · Factory Fault Diagnosis Portfolio
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
